@@ -1,22 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans  xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:context="http://www.springframework.org/schema/context"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean id="testBean"
-          class="org.ildus.akhamdiev.base_core.BeanEx">
-        <constructor-arg value="TestString"/>
-    </bean>
-    <bean id="musicBean"
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+
+
+    <bean id="musicBean1"
           class="org.ildus.akhamdiev.iocDi.ClassicalMusic">
     </bean>
-    <bean id="musicPlayer"
-          class="org.ildus.akhamdiev.iocDi.MusicPlayer">
-        <constructor-arg ref="musicBean" />
+    <bean id="musicBean2"
+          class="org.ildus.akhamdiev.iocDi.RockMusic">
+    </bean>
+    <bean id="musicBean3"
+          class="org.ildus.akhamdiev.iocDi.PopMusic">
+    </bean>
+
+    <bean id="musics"
+          class="java.util.ArrayList">
+        <constructor-arg>
+        <list>
+            <ref bean="musicBean1"/>
+            <ref bean="musicBean2"/>
+            <ref bean="musicBean3"/>
+        </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="musicList" class="org.ildus.akhamdiev.iocDi.MusicPlayer" >
+        <constructor-arg ref="musics" />
     </bean>
 
 
