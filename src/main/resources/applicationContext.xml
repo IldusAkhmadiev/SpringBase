@@ -14,5 +14,10 @@
     <bean id="musicBean"
           class="org.ildus.akhamdiev.iocDi.ClassicalMusic">
     </bean>
+    <bean id="musicPlayer"
+          class="org.ildus.akhamdiev.iocDi.MusicPlayer">
+        <constructor-arg ref="musicBean" />
+    </bean>
+
 
 </beans>
