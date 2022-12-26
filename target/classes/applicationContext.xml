@@ -11,5 +11,8 @@
           class="org.ildus.akhamdiev.base_core.BeanEx">
         <constructor-arg value="TestString"/>
     </bean>
+    <bean id="musicBean"
+          class="org.ildus.akhamdiev.iocDi.ClassicalMusic">
+    </bean>
 
 </beans>
