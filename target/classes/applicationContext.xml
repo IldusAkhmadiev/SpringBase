@@ -7,6 +7,8 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+
     <bean id="testBean"
           class="org.ildus.akhamdiev.base_core.BeanEx">
         <constructor-arg value="TestString"/>
@@ -19,5 +21,12 @@
         <constructor-arg ref="musicBean" />
     </bean>
 
+    <bean id="musicPlayer2"
+          class="org.ildus.akhamdiev.iocDi.MusicPlayer">
+
+        <property name="music" ref="musicBean"/>
+        <property name="name" value="${musicPlayer.name}"/>
+        <property name="volume" value="${musicPlayer.volume}"/>
+    </bean>
 
 </beans>
