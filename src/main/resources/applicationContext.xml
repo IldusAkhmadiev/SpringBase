@@ -10,7 +10,8 @@
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
 
     <bean id="testBean"
-          class="org.ildus.akhamdiev.base_core.BeanEx">
+          class="org.ildus.akhamdiev.base_core.BeanEx"
+          scope="prototype">
         <constructor-arg value="TestString"/>
     </bean>
     <bean id="musicBean"
