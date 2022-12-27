@@ -8,41 +8,6 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
+    <context:component-scan base-package="org.ildus.akhamdiev"/>
 
-    <bean id="testBean"
-          class="org.ildus.akhamdiev.base_core.BeanEx"
-          scope="prototype">
-        <constructor-arg value="TestString"/>
-    </bean>
-    <bean id="musicBean"
-          class="org.ildus.akhamdiev.iocDi.ClassicalMusic">
-    </bean>
-    <bean id="musicPlayer"
-          class="org.ildus.akhamdiev.iocDi.MusicPlayer">
-        <constructor-arg ref="musicBean" />
-    </bean>
-
-    <bean id="musicPlayer2"
-          class="org.ildus.akhamdiev.iocDi.MusicPlayer">
-
-        <property name="music" ref="musicBean"/>
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
-    <bean id="single"
-          class="org.ildus.akhamdiev.beanLifeCycle.Singleton"
-          init-method="init"
-          destroy-method="destroy"
-          scope="singleton"
-          >
-
-    </bean>
-    <bean id="prototype"
-          class="org.ildus.akhamdiev.beanLifeCycle.Prototype"
-          init-method="init"
-          destroy-method="destroy"
-          scope="prototype"
-    >
-
-    </bean>
 </beans>

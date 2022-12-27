@@ -1,5 +1,8 @@
 package org.ildus.akhamdiev.iocDi;
 
+import org.springframework.stereotype.Component;
+
+@Component("musicPlayer2")
 public class MusicPlayer {
     private Music music;
     private String name;
