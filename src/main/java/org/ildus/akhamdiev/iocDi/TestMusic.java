@@ -11,7 +11,7 @@ public class TestMusic {
         MusicPlayer musicPlayer2 = context.getBean("musicPlayer2",MusicPlayer.class);
         BeanEx testBean1 = context.getBean("beanEx", BeanEx.class);
         BeanEx testBean2 = context.getBean("beanEx", BeanEx.class);
-//        musicPlayer.playMusic();
+        musicPlayer.playMusic();
         System.out.println("Singleton " + (musicPlayer == musicPlayer2) );
         System.out.println(testBean1);
         System.out.println(testBean2);

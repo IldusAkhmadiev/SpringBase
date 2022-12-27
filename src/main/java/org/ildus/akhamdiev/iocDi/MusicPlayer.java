@@ -1,5 +1,7 @@
 package org.ildus.akhamdiev.iocDi;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component("musicPlayer2")
@@ -15,6 +17,8 @@ public class MusicPlayer {
         return music;
     }
 
+    @Autowired
+    @Qualifier("popMusic")
     public void setMusic(Music music) {
         this.music = music;
     }
