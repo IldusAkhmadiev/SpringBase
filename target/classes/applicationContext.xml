@@ -29,5 +29,20 @@
         <property name="name" value="${musicPlayer.name}"/>
         <property name="volume" value="${musicPlayer.volume}"/>
     </bean>
+    <bean id="single"
+          class="org.ildus.akhamdiev.beanLifeCycle.Singleton"
+          init-method="init"
+          destroy-method="destroy"
+          scope="singleton"
+          >
 
+    </bean>
+    <bean id="prototype"
+          class="org.ildus.akhamdiev.beanLifeCycle.Prototype"
+          init-method="init"
+          destroy-method="destroy"
+          scope="prototype"
+    >
+
+    </bean>
 </beans>
