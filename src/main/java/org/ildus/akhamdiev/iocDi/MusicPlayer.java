@@ -1,10 +1,15 @@
 package org.ildus.akhamdiev.iocDi;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import java.util.List;
 import java.util.Random;
 
 
 public class MusicPlayer {
+    @Autowired
+    @Qualifier("musicList")
     private List<Music> music;
 
 

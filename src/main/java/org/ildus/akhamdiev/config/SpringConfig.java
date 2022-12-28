@@ -48,11 +48,11 @@ public class SpringConfig {
 
     @Bean(name = "musicPlayer2")
     public MusicPlayer musicPlayer() {
-       return new MusicPlayer(musicList());
+       return new MusicPlayer();
     }
 
     @Bean
     public List<Music> musicList() {
-        return Arrays.asList(classicalMusic(),popMusic(),rockMusic());
+        return Arrays.asList(rockMusic());
     }
 }

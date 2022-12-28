@@ -15,6 +15,8 @@ public class TestMusic {
         musicPlayer.playMusic();
         musicPlayer2.playMusic();
         musicPlayer3.playMusic();
+        musicPlayer3.playMusic();
+        musicPlayer3.playMusic();
         context.close();
 
     }
