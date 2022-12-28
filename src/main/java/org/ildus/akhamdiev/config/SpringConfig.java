@@ -1,54 +1,51 @@
 package org.ildus.akhamdiev.config;
 
-import org.ildus.akhamdiev.base_core.BeanEx;
-import org.ildus.akhamdiev.beanLifeCycle.Prototype;
-import org.ildus.akhamdiev.beanLifeCycle.Singleton;
-import org.ildus.akhamdiev.iocDi.ClassicalMusic;
-import org.ildus.akhamdiev.iocDi.MusicPlayer;
-import org.ildus.akhamdiev.iocDi.PopMusic;
-import org.ildus.akhamdiev.iocDi.RockMusic;
-import org.springframework.context.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 @Configuration
 @ComponentScan("org.ildus.akhamdiev")
-@PropertySource("classpath:musicPlayer.properties")
-public class SpringConfig {
-    // also work @Component
-    @Bean
-    public BeanEx beanEx() {
-        return new BeanEx();
+@EnableWebMvc
+public class SpringConfig implements WebMvcConfigurer {
+
+    private final ApplicationContext applicationContext;
+
+    @Autowired
+    public SpringConfig(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
     }
 
     @Bean
-    @Scope("prototype")
-    public Prototype prototype() {
-        return new Prototype();
+    public SpringResourceTemplateResolver templateResolver() {
+        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+        templateResolver.setApplicationContext(applicationContext);
+        templateResolver.setPrefix("/WEB-INF/views/");
+        templateResolver.setSuffix(".html");
+        return templateResolver;
     }
 
     @Bean
-    public Singleton singleton() {
-        return new Singleton();
+    public SpringTemplateEngine templateEngine() {
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver());
+        templateEngine.setEnableSpringELCompiler(true);
+        return templateEngine;
     }
 
-    @Bean
-    public ClassicalMusic classicalMusic() {
-        return new ClassicalMusic();
-    }
-
-    @Bean
-    public PopMusic popMusic() {
-        return new PopMusic();
-    }
-
-    @Bean
-    public RockMusic rockMusic() {
-        return new RockMusic();
-    }
-
-    @Bean(name = "musicPlayer2")
-    public MusicPlayer musicPlayer() {
-        MusicPlayer musicPlayer = new MusicPlayer(popMusic(), rockMusic());
-        musicPlayer.setMusic(classicalMusic());
-        return musicPlayer;
+    //    Шаблонизатор
+    @Override
+    public void configureViewResolvers(ViewResolverRegistry registry) {
+        ThymeleafViewResolver resolver = new ThymeleafViewResolver();
+        resolver.setTemplateEngine(templateEngine());
+        registry.viewResolver(resolver);
     }
 }
