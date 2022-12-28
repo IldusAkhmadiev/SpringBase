@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component("musicPlayer2")
-@Scope("singleton")
+
 public class MusicPlayer {
     private Music music;
     @Value("${musicPlayer.name}")
@@ -23,11 +22,11 @@ public class MusicPlayer {
     private Music music3;
 
     public MusicPlayer() {
-        System.out.println("default");
+        System.out.println("default Music player");
     }
 
-    @Autowired
-    public MusicPlayer(@Qualifier("popMusic") Music music2 ,@Qualifier("popMusic") Music music3) {
+
+    public MusicPlayer(Music music2 ,Music music3) {
         this.music2 = music2;
         this.music3 = music3;
         System.out.println(music2.getSong() + " " + music3.getSong());
@@ -37,8 +36,6 @@ public class MusicPlayer {
         return music;
     }
 
-    @Autowired
-    @Qualifier("popMusic")
     public void setMusic(Music music) {
         this.music = music;
     }

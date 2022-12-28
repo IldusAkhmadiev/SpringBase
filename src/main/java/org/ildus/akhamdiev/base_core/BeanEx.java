@@ -7,6 +7,7 @@ public class BeanEx {
     private String name;
 
     public BeanEx() {
+        System.out.println("BeanEX init");
     }
 
     public BeanEx(String name) {
