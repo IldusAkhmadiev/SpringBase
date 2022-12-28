@@ -3,11 +3,12 @@ package org.ildus.akhamdiev.config;
 import org.ildus.akhamdiev.base_core.BeanEx;
 import org.ildus.akhamdiev.beanLifeCycle.Prototype;
 import org.ildus.akhamdiev.beanLifeCycle.Singleton;
-import org.ildus.akhamdiev.iocDi.ClassicalMusic;
-import org.ildus.akhamdiev.iocDi.MusicPlayer;
-import org.ildus.akhamdiev.iocDi.PopMusic;
-import org.ildus.akhamdiev.iocDi.RockMusic;
+import org.ildus.akhamdiev.iocDi.*;
 import org.springframework.context.annotation.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @ComponentScan("org.ildus.akhamdiev")
@@ -47,8 +48,11 @@ public class SpringConfig {
 
     @Bean(name = "musicPlayer2")
     public MusicPlayer musicPlayer() {
-        MusicPlayer musicPlayer = new MusicPlayer(popMusic(), rockMusic());
-        musicPlayer.setMusic(classicalMusic());
-        return musicPlayer;
+       return new MusicPlayer(musicList());
+    }
+
+    @Bean
+    public List<Music> musicList() {
+        return Arrays.asList(classicalMusic(),popMusic(),rockMusic());
     }
 }

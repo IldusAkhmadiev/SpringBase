@@ -1,67 +1,32 @@
 package org.ildus.akhamdiev.iocDi;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import java.util.List;
+import java.util.Random;
 
 
 public class MusicPlayer {
-    private Music music;
-    @Value("${musicPlayer.name}")
-    private String name;
-    @Value("${musicPlayer.volume}")
-    private int volume;
+    private List<Music> music;
 
-//    @Autowired
-//    @Qualifier("popMusic")
-    private Music music2;
-//    @Autowired
-//    @Qualifier("popMusic")
-    private Music music3;
 
     public MusicPlayer() {
         System.out.println("default Music player");
     }
 
-
-    public MusicPlayer(Music music2 ,Music music3) {
-        this.music2 = music2;
-        this.music3 = music3;
-        System.out.println(music2.getSong() + " " + music3.getSong());
-    }
-
-    public Music getMusic() {
-        return music;
-    }
-
-    public void setMusic(Music music) {
+    public MusicPlayer(List<Music> music) {
         this.music = music;
     }
 
-    public String getName() {
-        return name;
+    public List<Music> getMusic() {
+        return music;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getVolume() {
-        return volume;
-    }
-
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-
-    public MusicPlayer(Music music) {
+    public void setMusic(List<Music> music) {
         this.music = music;
     }
 
     public void playMusic() {
-        System.out.println("Playing: " + music.getSong());
-        System.out.println(name + " " + volume);
+        Random random = new Random();
+        int i = random.nextInt(music.size());
+        System.out.println(music.get(i).getSong());
     }
 }
