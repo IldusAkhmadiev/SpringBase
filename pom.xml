@@ -94,7 +94,7 @@
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
-<!--   FIXME При вставке 17 версии java требует эту библеотеку для запуска -->
+<!--   FIXME При вставке 17 версии java  и 6 спринга требует эту библеотеку для запуска -->
 
 <!--    <dependency>-->
 <!--      <groupId>jakarta.servlet</groupId>-->
