@@ -14,19 +14,12 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
 
-<!--    FIXME при попытке использовать 17 версию java и 6.0.0 версию спринга приложенеи не рабоатает -->
-<!--    FIXME запускается но ресурс http://localhost:8080/hello-world не работает  -->
-<!--    FIXME Томкат 9.0.52 версии хотелось бы использовать 17 версию и 6 версию спринга -->
-<!--    FIXME при 17 java требует jakarta.servlet но при добавлении его проблема не решается -->
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <spring.version>6.0.0</spring.version>
 
-<!--    <maven.compiler.source>17</maven.compiler.source>-->
-<!--    <maven.compiler.target>17</maven.compiler.target>-->
-<!--    <spring.version>6.0.0</spring.version>-->
-
-    <spring.version>5.2.1.RELEASE</spring.version>
+<!--    <spring.version>5.2.1.RELEASE</spring.version>-->
 
   </properties>
 
@@ -80,11 +73,18 @@
       <version>${spring.version}</version>
     </dependency>
 
+<!--    <dependency>-->
+<!--      <groupId>org.thymeleaf</groupId>-->
+<!--      <artifactId>thymeleaf-spring5</artifactId>-->
+<!--      <version>3.0.11.RELEASE</version>-->
+<!--    </dependency>-->
+    <!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring6 -->
     <dependency>
       <groupId>org.thymeleaf</groupId>
-      <artifactId>thymeleaf-spring5</artifactId>
-      <version>3.0.11.RELEASE</version>
+      <artifactId>thymeleaf-spring6</artifactId>
+      <version>3.1.1.RELEASE</version>
     </dependency>
+
 
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -93,15 +93,12 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
-<!--   FIXME При вставке 17 версии java  и 6 спринга требует эту библеотеку для запуска -->
-
-<!--    <dependency>-->
-<!--      <groupId>jakarta.servlet</groupId>-->
-<!--      <artifactId>jakarta.servlet-api</artifactId>-->
-<!--      <version>6.0.0</version>-->
-<!--      <scope>provided</scope>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <version>6.0.0</version>
+      <scope>provided</scope>
+    </dependency>
 
 
 
