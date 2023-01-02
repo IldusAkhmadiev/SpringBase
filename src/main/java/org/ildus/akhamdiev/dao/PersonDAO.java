@@ -12,9 +12,9 @@ public class PersonDAO {
 
     {
         personList = new ArrayList<>();
-        personList.add(new Person(1L,"Maks"));
-        personList.add(new Person(2L,"Igor"));
-        personList.add(new Person(3L,"Liza"));
+        personList.add(new Person("Maks"));
+        personList.add(new Person("Igor"));
+        personList.add(new Person("Liza"));
     }
 
     public List<Person> getAllPeople() {
@@ -22,8 +22,18 @@ public class PersonDAO {
     }
 
     public Person getPeople(Long id) {
-        Person person = personList.stream().filter((ob) -> ob.getId() == id.intValue()).findAny().orElse(null);
+//        Person person = personList.stream().filter((ob) -> ob.getId() == id).findAny().orElse(null);
+        for (Person person : personList) {
+            if(person.getId()==id) {
+                return person;
+            }
+        }
 
-        return person;
+        return null;
+    }
+
+    public void save(Person person) {
+        person.increment();
+        personList.add(person);
     }
 }
