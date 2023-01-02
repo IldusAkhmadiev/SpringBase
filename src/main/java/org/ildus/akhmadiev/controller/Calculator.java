@@ -1,16 +1,13 @@
-package org.ildus.akhamdiev.controller;
+package org.ildus.akhmadiev.controller;
 
-import org.ildus.akhamdiev.enums.CalculatorEnum;
+import org.ildus.akhmadiev.enums.CalculatorEnum;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
 @Controller

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div th:each="item : ${allItems}" >
+        <span th:text="${item.getId()}"></span>
+        <span th:text="${item.getName()}"></span>
+        <span th:text="${item.getWeight()}"></span>
+        <span th:text="${item.getCategory()}"></span>
+    </div>
+    <div>
+        <form th:method="POST" th:action="@{/items}" th:object="${newItem}" >
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}">
+            <br/>
+            <label for="weightLabel">Weight:</label>
+            <input id="weightLabel" type="text" th:field="*{weight}" >
+            <br/>
+            <label for="categoryLabel">Category:</label>
+            <input id="categoryLabel" type="text" th:field="*{category}" >
+            <br/>
+            <input type="submit" value="Create">
+        </form>
+    </div>
+</body>
+</html>

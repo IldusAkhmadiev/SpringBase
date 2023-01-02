@@ -1,9 +1,6 @@
-package org.ildus.akhamdiev.models;
+package org.ildus.akhmadiev.models;
 
-import org.ildus.akhamdiev.dao.PersonDAO;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.util.List;
+import java.util.ArrayList;
 
 public class Person {
     private static Long COUNT = 0L;

@@ -1,4 +1,4 @@
-package org.ildus.akhamdiev.config;
+package org.ildus.akhmadiev.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

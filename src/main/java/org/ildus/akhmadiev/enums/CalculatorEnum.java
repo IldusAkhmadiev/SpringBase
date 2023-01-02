@@ -1,4 +1,4 @@
-package org.ildus.akhamdiev.enums;
+package org.ildus.akhmadiev.enums;
 
 import java.util.Locale;
 

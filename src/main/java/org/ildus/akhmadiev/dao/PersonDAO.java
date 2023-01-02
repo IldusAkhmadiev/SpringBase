@@ -1,6 +1,6 @@
-package org.ildus.akhamdiev.dao;
+package org.ildus.akhmadiev.dao;
 
-import org.ildus.akhamdiev.models.Person;
+import org.ildus.akhmadiev.models.Person;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
