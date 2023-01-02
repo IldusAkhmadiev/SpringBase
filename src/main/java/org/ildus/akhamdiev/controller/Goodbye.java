@@ -1,19 +1,24 @@
 package org.ildus.akhamdiev.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 @Controller
 @RequestMapping("/goodbye")
 public class Goodbye {
 
     @GetMapping("")
-    public String goodMain(HttpServletRequest request) {
+    public String goodMain(HttpServletRequest request, Model model) {
         String name = request.getParameter("name");
+        String surname = request.getParameter("surname");
+        model.addAttribute("hello"," hello " + name + " " + surname);
         return "goodbye/main";
     }
 
@@ -23,7 +28,7 @@ public class Goodbye {
     }
 
     @GetMapping("/good2")
-    public String good2(@RequestParam("name") String name) {
+    public String good2(@RequestParam(value = "name",required = false) String name,Model model) {
         System.out.println("------------- "  + name);
         return "goodbye/good2";
     }
