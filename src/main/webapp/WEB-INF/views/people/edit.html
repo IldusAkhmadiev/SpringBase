@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://thymeleaf.org">
+      xsi:schemaLocation="http://thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
-<form th:method="POST" th:action="@{/people}" th:object="${person22}">
+    <form th:method="PATCH" th:action="@{/people/{id}(id=${person1.getId()})}" th:object="${person1}">
     <label for="labelId">Your name :</label>
     <input type="text" th:field="*{name}" id="labelId"/>
     <br/>
-    <input type="submit" value="Create/Создать"/>
+    <input type="submit" value="Update"/>
     <p th:text="${key}">value</p>
-</form>
+    </form>
 </body>
 </html>

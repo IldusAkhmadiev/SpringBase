@@ -36,19 +36,39 @@ public class PeopleController {
     }
 
     @GetMapping("/new")
-    public String addPeople(@ModelAttribute("person") Person person) {  // Model model
+    public String addPeople(@ModelAttribute("person22") Person person) {  // Model model
 //        model.addAttribute("people", new Person());
         return "/people/newPeople";
     }
 
     @PostMapping("")
-    public String createPeople(@ModelAttribute("person") Person person) {
+    public String createPeople(@ModelAttribute("person22") Person person) {
         personDAO.save(person);
         return "redirect:/people";
     }
 
+    // добавляет модель для всех контроллеров
     @ModelAttribute(value = "key",binding = false)
     public String key() {
         return "Test";
     }
+
+    @GetMapping("/{id}/edit")
+    public String editPeople(Model model,@PathVariable("id") int id) {
+        model.addAttribute("person1",personDAO.getPeople((long) id));
+        return "/people/edit";
+    }
+
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("person1") Person person,@PathVariable("id") long id) {
+        personDAO.update(id,person);
+        return "redirect:/people";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") long id) {
+        personDAO.delete(id);
+        return "redirect:/people";
+    }
+
 }
