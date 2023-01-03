@@ -5,8 +5,10 @@ import org.ildus.akhmadiev.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -42,7 +44,10 @@ public class PeopleController {
     }
 
     @PostMapping("")
-    public String createPeople(@ModelAttribute("person22") Person person) {
+    public String createPeople(@ModelAttribute("person22") @Valid Person person, BindingResult result) {
+        if(result.hasErrors()) {
+            return "/people/newPeople";
+        }
         personDAO.save(person);
         return "redirect:/people";
     }
@@ -60,7 +65,10 @@ public class PeopleController {
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("person1") Person person,@PathVariable("id") long id) {
+    public String update(@ModelAttribute("person1") @Valid Person person,BindingResult result,@PathVariable("id") long id) {
+        if(result.hasErrors()) {
+            return "/people/edit";
+        }
         personDAO.update(id,person);
         return "redirect:/people";
     }

@@ -10,6 +10,12 @@
     <label for="labelId">Your name :</label>
     <input type="text" th:field="*{name}" id="labelId"/>
     <br/>
+        <label for="labelId2">Your age :</label>
+        <input type="text" th:field="*{age}" id="labelId2"/>
+        <br/>
+        <label for="labelId3">Your email :</label>
+        <input type="text" th:field="*{email}" id="labelId3"/>
+        <br/>
     <input type="submit" value="Update"/>
     <p th:text="${key}">value</p>
     </form>

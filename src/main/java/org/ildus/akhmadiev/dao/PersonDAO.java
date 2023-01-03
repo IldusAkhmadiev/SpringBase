@@ -12,9 +12,9 @@ public class PersonDAO {
 
     {
         personList = new ArrayList<>();
-        personList.add(new Person("Maks"));
-        personList.add(new Person("Igor"));
-        personList.add(new Person("Liza"));
+        personList.add(new Person("Maks",10,"ya@mail.ru"));
+        personList.add(new Person("Igor",33,"go@go.ru"));
+        personList.add(new Person("Liza",19,"lo@go.ru"));
     }
 
     public List<Person> getAllPeople() {
@@ -40,6 +40,8 @@ public class PersonDAO {
     public void update(long id, Person person) {
         Person personUp = getPeople(id);
         personUp.setName(person.getName());
+        personUp.setAge(person.getAge());
+        personUp.setEmail(person.getEmail());
     }
 
     public void delete(long id) {
