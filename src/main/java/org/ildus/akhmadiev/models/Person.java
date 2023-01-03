@@ -17,14 +17,19 @@ public class Person {
     @NotEmpty @Email
     private String email;
 
-    public void increment() {
+    public long increment() {
         this.id = ++COUNT;
+        return id;
     }
 
     public Person() {
     }
 
-    public Person(String name,int age,String email) {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Person(String name, int age, String email) {
         this.id = ++COUNT;
         this.name = name;
         this.age = age;

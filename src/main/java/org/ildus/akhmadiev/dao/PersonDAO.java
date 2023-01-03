@@ -3,48 +3,75 @@ package org.ildus.akhmadiev.dao;
 import org.ildus.akhmadiev.models.Person;
 import org.springframework.stereotype.Component;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class PersonDAO {
-    private List<Person> personList;
 
-    {
-        personList = new ArrayList<>();
-        personList.add(new Person("Maks",10,"ya@mail.ru"));
-        personList.add(new Person("Igor",33,"go@go.ru"));
-        personList.add(new Person("Liza",19,"lo@go.ru"));
+    private static String URL = "jdbc:postgresql://localhost:5433/SpringBase";
+    private static String logAndPassword = "postgres";
+
+    private static Connection connection;
+
+    static  {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            connection = DriverManager.getConnection(URL,logAndPassword,logAndPassword);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
+
     public List<Person> getAllPeople() {
+        List<Person> personList = new ArrayList<>();
+
+        try {
+            Statement statement = connection.createStatement();
+            String SQL = "select * from Person";
+            ResultSet resultSet = statement.executeQuery(SQL);
+            while(resultSet.next()) {
+                Person person = new Person();
+                person.setId((long) resultSet.getInt("id"));
+                person.setName(resultSet.getString("name"));
+                person.setEmail(resultSet.getString("email"));
+                person.setAge(resultSet.getInt("age"));
+
+                personList.add(person);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return personList;
     }
 
     public Person getPeople(Long id) {
-//        Person person = personList.stream().filter((ob) -> ob.getId() == id).findAny().orElse(null);
-        for (Person person : personList) {
-            if(person.getId()==id) {
-                return person;
-            }
-        }
-
         return null;
     }
 
     public void save(Person person) {
-        person.increment();
-        personList.add(person);
+        try {
+            Statement statement = connection.createStatement();
+            String SQL = "insert into Person values(" +person.increment() + ",'" + person.getName() + "'," +
+        person.getAge() + ",'" + person.getEmail() + "')";
+            statement.executeUpdate(SQL);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 
     public void update(long id, Person person) {
-        Person personUp = getPeople(id);
-        personUp.setName(person.getName());
-        personUp.setAge(person.getAge());
-        personUp.setEmail(person.getEmail());
+
     }
 
     public void delete(long id) {
-        personList.removeIf(person -> person.getId() == id);
+
     }
 }
