@@ -17,6 +17,13 @@ public class Person {
     @NotEmpty @Email
     private String email;
 
+    public Person(Long id, @NotEmpty(message = "name is null or \"\" ") @Size(min = 2, max = 10) String name, @Min(value = 0, message = "min 0 ") int age, @NotEmpty @Email String email) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.email = email;
+    }
+
     public long increment() {
         this.id = ++COUNT;
         return id;
