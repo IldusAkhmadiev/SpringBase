@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class PersonDAO {
@@ -24,6 +25,11 @@ public class PersonDAO {
 
     public List<Person> getAllPeople() {
         return jdbcTemplate.query("select * from Person",new BeanPropertyRowMapper<>(Person.class));
+    }
+
+    public Optional<Person> show(String email) {
+        return jdbcTemplate.query("SELECT * FROM  PERSON WHERE email=?",new Object[] {email} ,new BeanPropertyRowMapper<>(Person.class)).stream()
+                .findAny();
     }
 
     public Person getPeople(Long id) {

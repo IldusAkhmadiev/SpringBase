@@ -2,6 +2,7 @@ package org.ildus.akhmadiev.controller;
 
 import org.ildus.akhmadiev.dao.PersonDAO;
 import org.ildus.akhmadiev.models.Person;
+import org.ildus.akhmadiev.util.PersonValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +17,12 @@ import java.util.List;
 public class PeopleController {
 
     private final PersonDAO personDAO;
+    private final PersonValidator validator;
 
     @Autowired
-    public PeopleController(PersonDAO personDAO) {
+    public PeopleController(PersonDAO personDAO, PersonValidator validator) {
         this.personDAO = personDAO;
+        this.validator = validator;
     }
 
     @GetMapping("")
@@ -45,6 +48,7 @@ public class PeopleController {
 
     @PostMapping("")
     public String createPeople(@ModelAttribute("person22") @Valid Person person, BindingResult result) {
+        validator.validate(person,result);
         if(result.hasErrors()) {
             return "/people/newPeople";
         }
@@ -66,6 +70,7 @@ public class PeopleController {
 
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("person1") @Valid Person person,BindingResult result,@PathVariable("id") long id) {
+        validator.validate(person,result);
         if(result.hasErrors()) {
             return "/people/edit";
         }
